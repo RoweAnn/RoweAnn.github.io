@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>TrailAdvisor - Map App to Explore Your Best-suited Hiknig Trail with Spatial Analysis</title>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <!-- Mapbox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+
+    <!-- Storytelling -->
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+
+    <!-- Custom -->
+    <link href="css/loc2.css" rel="stylesheet">
+</head>
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container px-41 px-lg-5">
+            <a class="navbar-brand" href="#page-top">厦门旅游地图</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#problem">魅力厦门</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#data">文化地标</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#why">打卡景点</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#where">旅途惊喜</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#more">深度游线</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#app">旅游地图</a></li>
+                    <li class="nav-item"><a href="#end" class="nav-link">小结</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center">
+                    <h1 class="mx-auto my-0 text-uppercase">相约厦门</h1>
+                    <h2 class="text-white mx-auto mt-2 mb-5">深度游线与您共赴山海佳约！</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem -->
+    <section class="problem-section" id="problem">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="text-black mx-auto mb-4"><b>走进厦门</b></h1>
+                    <!-- <h5 class="text-black-50 mx-auto mb-3">What is the most popular outdoor activity in Hong Kong now? I guess hiking would be one of the answers in your mind. [maybe just say without putting it in the page]</h5> -->
+                    <h5 class="text-black-50 mx-auto mb-3"> 厦门是中国东南沿海著名的港口风景旅游城市，风景秀丽、四季如春，城在海上、海在城中，素有“海上花园”美誉。全市现有土地面积1699.39平方公里，海域面积390平方公里。下辖思明、湖里、集美、海沧、同安、翔安6个行政区，常住人口516万人。2017年9月，金砖国家领导人会晤在厦成功举办， <span class="highlight">习近平总书记盛赞厦门为“高素质的创新创业之城”和“高颜值的生态花园之城”。</span>  </h5>
+                    <h5 class="text-black-50 mx-auto mb-5">这座城市有着大都市的繁华，也有着普通小城的安静自在，四季如春的气候更为其锦上添花，小清新的气质让这个城市那么的与众不同。<span class="highlight"> </span>  <span class="highlight">相遇厦门  邀约花期</span> 厦门的最佳赏花期又到了，共赴山海佳约吧！</h5>
+                </div>
+            </div>
+            <img class="img-fluid" src="assets/img/laptop.png" />
+        </div>
+    </section>
+
+    <!-- Data -->
+    <section class="data-section bg-light" id="data">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-0 mb-5 mb-lg-5 align-items-center">
+                <div class="col-xl-8 col-lg-7">
+                    <img class="img-fluid mb-3 mb-lg-0 shadow rounded" src="assets/img/hashtag.png" />
+                </div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="featured-text text-center text-lg-left">
+                        <h4><b>鼓浪屿</b></h4>
+                        <h5 class="text-black-50 mb-0">世界文化遗产 <span class="highlight"> </span><br> </h5>
+                        <h5 class="text-black-50 mb-0"> <br> </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row gx-0 mb-5 mb-lg-5 align-items-center">
+                <div class="col-xl-8 col-lg-7">
+                    <img class="img-fluid mb-3 mb-lg-0 shadow rounded" src="assets/img/opendata.png" />
+                </div>
+                <div class="col-xl-4 col-lg-5 order-lg-first">
+                    <div class="featured-text text-center text-lg-left">
+                        <h4><b>集美学村</b></h4>
+                        <h5 class="text-black-50 mb-0">  <span class="highlight"> </span></h5>
+                        <!-- <h5 class="text-black-50 mb-0">[Image to be updated]</h5> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why -->
+    <section class="why-section" id="why">
+        <div class="container mt-5 px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="text-dark-50 text-center mx-auto mb-4"><b>高频打卡点</b></h1>
+                </div>
+            </div>
+            <div class="row gx-0 align-items-center">
+                <div class="col-xl-4 col-lg-5">
+                    <div class="featured-text text-center text-lg-left">
+                        <h4><b>某花</b></h4>
+                        <h5 class="text-black-50 mb-0">某树</h5>
+                        <h5 class="mb-5 text-black-50"> </h5>
+                        <img class="img-fluid rounded shadow" src="assets/img/001.jpg"  width="660"/>
+                    </div>
+                </div>
+
+                <div class="col-xl-8 col-lg-7">
+                    <a href="#why2"><img class="img-fluid mb-3 mb-lg-3" src="assets/img/002.jpeg"  width="860"/></a>
+                </div>
+            </div>
+
+            <!-- Project One Row-->
+            <div id="why2" class="row gx-0 justify-content-center">
+                <div class="col-lg-4 mb-5 mb-lg-5">
+                    <img class="img-fluid" src="assets/img/003.jpeg" width="960" />
+                </div>
+                <div class="col-lg-5 mb-5 mb-lg-5">
+                    <div class="text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-left">
+                                <h4 class="text-dark"><b>某小店</b></h4>
+                                <h5 class="mb-0 text-black-50"><span class='highlight'> </span> </h5>
+                                <h5 class="mb-0 text-black-50"><span class="highlight"> </span> </h5>
+                                
+                                                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="where-section bg-light" id="where">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="text-dark-50 text-center mx-auto mb-4"><b>与美好相期而遇</b></h1>
+                </div>
+            </div>
+
+            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                <div class="col-xl-4 col-lg-5">
+                    <div class="featured-text text-center text-lg-left">
+                        <h4 class="text-dark"><b>蓝眼泪荧光海</b></h4>
+                        <!-- <h5 class="text-black-50 mb-0">1. Spatial filtering</h5> -->
+                        <!-- <h5 class="text-black-50 mb-0">2. Spatial clustering</h5> -->
+                        <h5 class="text-black-50 mb-2"> </h5>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-7">
+                    <img class="img-fluid mb-lg-0 rounded shadow" src="assets/img/cleansing.png" />
+                </div>
+            </div>
+
+            <div class="row mb-4 mb-lg-5 align-items-center justify-content-center">
+                <div class="col-xl-4 col-lg-4">
+                    <div class="featured-text text-center">
+                        <h4 class="text-dark"><b>落潮赶海</b></h4>
+                        <h5 class="text-black-50 mb-2"> </h5>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 order-lg-first">
+                    <img class="img-fluid rounded shadow mb-5 mb-lg-4" src="assets/img/data_1.png" />
+                </div>
+            </div>
+           
+           
+        </div>
+    </section>
+
+    <section class="where2-section" id="more">
+        <div class="container-fluid px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div id="where2" class="row gx-0 mb-5 mb-lg-5 align-items-center">
+                    <div class="col-xl-12 col-lg-12 mt-lg-5 mb-3">
+                        <div id="map"></div>
+                        <div id="story"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TrailAdvisor -->
+    <!-- <section class="data-section bg-light" id="app">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8 text-center mb-5">
+                    <h1 class="text-dark-50 text-center mx-auto mb-4"><b>TrailAdvisor</b></h1>
+                    <h5 class="text-black-50 mb-5">Interested in finding your best-suited trail? Check out the TrailAdvisor for route finding and incident report.</h5>
+                    <a class="btn btn-primary" href="https://experience.arcgis.com/experience/b8ef6330d69c41f0a6c2d4864f6efcfa/page/Home/">Let's go!</a>
+                </div>
+            </div>
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <iframe src="https://experience.arcgis.com/experience/b8ef6330d69c41f0a6c2d4864f6efcfa/page/Home/" frameborder="0" height=750px></iframe>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact-->
+    <section id="end" class="contact-section bg-black">
+        <div class="container h-100 px-4 px-lg-5">
+            <!-- <div class="row gx-4 gx-lg-5 h-100 align-items-center">
+                <div class="col-lg-4 text-center bg-white bg-opacity-75 p-4">
+                    <h4 class="text-dark"><span class="highlight">Data Acquisition</span></h4>
+                    <h5 class="text-black-50">Prepare more Instagram accounts!</h5>
+                    <h5 class="text-black-50">Tools: Python</h5>
+                </div>
+                <div class="col-lg-4 text-center bg-white bg-opacity-75 p-4">
+                    <h4 class="text-dark"><span class="highlight">Data Analytics</span></h4>
+                    <h5 class="text-black-50">Data cleansing is always required!</h5>
+                    <h5 class="text-black-50">Tools: Python, neo4j</h5>
+                </div>
+                <div class="col-lg-4 text-center bg-white bg-opacity-75 p-4">
+                    <h4 class="text-dark"><span class="highlight">Data Visualization</span></h4>
+                    <h5 class="text-black-50">Virtual tour on 3D Map</h5>
+                    <h5 class="text-black-50">Tools: Mapbox, HTML, JS, CSS</h5>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Footer-->
+    <footer class="footer small text-center text-black-50">
+        <div class="container px-4 px-lg-5">
+            <!-- <p class="mb-0">Thanks for listening!</p> -->
+            <p class="mb-0">罗莹晶</p>
+            <p class="mb-0">厦门市城市规划设计研究院有限公司</p>
+            <!-- <a href="https://youtu.be/16cZ7-lRaxU"><i class="fa-brands fa-youtube fa-xl" style="color: #0073e5"></i></a> <a href="https://github.com/gladysgit"><i class="fa-brands fa-github fa-xl" style="color: #0073e5"></i></a> -->
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core theme JS-->
+    <script src="./js/scripts.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/drive.js"></script>
+    <script src="./js/loc2.js"></script>
+</body>
+</html>
