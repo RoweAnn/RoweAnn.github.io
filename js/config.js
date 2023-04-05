@@ -128,7 +128,7 @@ var config = {
             description: 'Maclehose Trail Section 8 - Lead Mine Pass to Route Twisk<br>麥理浩徑第8段鉛鑛坳至荃錦公路',
             mapAnimation: 'flyTo',
             location: {
-                center: [118.073165075199, 24.4505283480214],
+                center: [114.12911, 22.41206],
                 zoom: 13,
                 pitch: 50,
                 bearing: 0,
@@ -172,7 +172,7 @@ var config = {
             description: 'Would you feel like giving it a try?',
             mapAnimation: 'flyTo',
             location: {
-                center: [118.073165075199, 24.4505283480214],
+                center: [114.12911, 22.41206],
                 zoom: 13,
                 pitch: 50,
                 bearing: 0,
