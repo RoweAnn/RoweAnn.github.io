@@ -301,7 +301,7 @@ window.addEventListener('resize', scroller.resize);
 
 $(document).ready(function (){
     $.ajax({
-      url: "https://gladysgit.github.io/hkhiking/assets/data/toptrail.json",
+      url: "https://github.com/RoweAnn/RoweAnn.github.io/blob/main/assets/data/toptrail.json",
       dataType: "json",
       success: function (data) {
         console.log('data', data.features[0]);
